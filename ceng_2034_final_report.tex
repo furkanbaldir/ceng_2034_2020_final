@@ -1,0 +1,113 @@
+\documentclass[]{article}
+%\usepackage{url}
+%\usepackage{algorithmic}
+\usepackage[a4paper]{geometry}
+\usepackage{datetime}
+\usepackage[margin=2em, font=small,labelfont=it]{caption}
+\usepackage{graphicx}
+\usepackage{mathpazo} % use palatino
+\usepackage[scaled]{helvet} % helvetica
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{subfigure}
+\usepackage{hyperref}
+% Letterspacing macros
+\newcommand{\spacecaps}[1]{\textls[200]{\MakeUppercase{#1}}}
+\newcommand{\spacesc}[1]{\textls[50]{\textsc{\MakeLowercase{#1}}}}
+
+\title{\spacecaps{Assignment Report 2: Multi Processing Implementation}\\ \normalsize \spacesc{CENG2034, Operating Systems} }
+
+\author{Furkan Baldır\\furkanbaldir13@gmail.com}
+%\date{\today\\\currenttime}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+	Today, this is the world of computers. Almost everything connected with computers. That's why humanity needs people who can speak the language of computers. These people are programmers.  However, if a programmers want to be a good programmer, they need to understand how operating system works. They need to understand creating child process in the operating system. Understanding the multi processing is important to understand the computer.
+\end{abstract}
+
+\subsection*{Github Page}
+\url{https://github.com/furkanbaldir/ceng_2034_2020_final} 
+
+\section{Introduction}
+In this homework, our goal is learning and distinguishing how parent and child processes work. Also, the other goal is understanding how multiprocessing works. 
+\section{Assignments}
+
+\subsection{What I used in project}
+
+\subsubsection*{CPU Features}
+Model Name: AMD A8-7410 APU with AMD Radeon R5 Graphics\newline
+Core Count: 4\newline
+Thread Count: 4
+\subsubsection*{Operating System}
+Ubuntu 20.04 LTS Budgie Environment
+\subsubsection*{Kernel Version}
+Linux 5.4.0-31-generic x86\_64
+\subsubsection*{Programming Language}
+Python 3.8.2 (Imported modules: os, uuid, requests, multiprocessing, hashlib, time)
+
+\subsection{Problems}
+
+\subsubsection{Create and Print Child PID}
+\includegraphics[scale=0.60]{printpid.png}
+\newline To solve this problem; I used \boldsymbol{os} module. Firstly, I create child process with \boldsymbol{os.fork()}. After that when return value is 0, \boldsymbol{os.getpid()} will return child PID.
+
+\subsubsection{Avoiding the Orphan Process Problem}
+\includegraphics[scale=0.60]{orphan.png}
+\newline To solve this problem; I used if-else statement to compare
+\boldsymbol{os.fork()} return value. If this value greter than 0, it is parent process; else, it is child process. That's why when value greater than 0, I used \boldsymbol{os.waitpid(pid,0)} to wait parent process.
+
+\subsubsection{Download Files from URL List}
+\includegraphics[scale=0.60]{downloadfile.png}
+\newline To solve this problem; I used \boldsymbol{uuid} and \boldsymbol{requests} module, and \boldsymbol{download\_file()} function. I downlaoded every URLs one by one.
+
+\subsubsection{Control Duplicate Files with Multiprocessing}
+\includegraphics[scale=0.60]{md5.png}\newline \newline
+\includegraphics[scale=0.60]{checkduplicate.png}\newline \newline
+\includegraphics[scale=0.60]{unqieu.png} \newline \newline
+\includegraphics[scale=0.60]{pool.png}
+\newline \newline To solve this problem; I used \boldsymbol{os}, \boldsymbol{multiprocessing} and \boldsymbol{hashlib} modules. Firstly I checked checksum values with \boldsymbol{md5()} function then checked unique duplicate values with using \boldsymbol{check\_duplicate()} and \boldsymbol{unique()} functions with using multiprocessing.
+
+\subsubsection{Checking Time Values}
+To solve this problem; I used \boldsymbol{time} module to check finishing times. \boldsymbol{time.time()} function used for this.
+
+
+\section{Results}
+\subsection{About Child and Parent PID}
+
+\includegraphics[scale=0.60]{pid.png}
+
+\newline\newline
+When I re-launch my application, Parent PID of the program changes. Also child PID changes and it is different number from parent.
+
+\subsection{Duplicate files}
+
+\includegraphics[scale=0.60]{duplicate_array.png}
+
+\newline
+I used arrays to use duplicate problem. This picture is result of which indexes are duplicates each other.\newline
+
+
+\includegraphics[scale=0.60]{result.png}\newline
+Also while I downloading files, every file have different names as filex (x is autoincrement). We can see the results with this names. 
+
+\subsection{Time Results}
+In the right conditions, multiprocessing save a lot of time. I didn't use multiprocessing while I was downloading files, but I used multiprocessing while I was checking duplicates. These are results. \newline\newline
+\includegraphics[scale=0.60]{download_time.png}\newline
+\includegraphics[scale=0.60]{duplicate_Time.png}
+
+\subsubsection*{Note}
+My CPU has 4 cores but I use 5 core in python with \boldsymbol{Pool}. So practically, if we use multiprocessing more than max core count of cpu, there is no error. Remaining cores are waiting to finish other processes.
+\section{Conclusion}
+To conclude this project, on GNU / Linux, every application create new processes as file. When re-launch the application, again operating system creates new process.
+That's why programmer should use these processes with more efficient ways. In this project, I can definitely say that, multiprocessing can save a lot of time, also some problems can solve with child processes. To make a good program, we need to understand these processes logic.
+
+
+
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
+

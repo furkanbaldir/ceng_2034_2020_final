@@ -64,6 +64,7 @@ def control_process(urls):
 		
 		# Check files from directory that python file is existing
 		files = os.listdir() 
+		#print(files)
 
 		# Remove main.py
 		files.remove("ceng_2034_final_answer.py")
