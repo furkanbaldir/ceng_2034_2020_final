@@ -27,37 +27,7 @@ def control_process(urls):
 		print("\nParent process pid is = {}".format(os.getpid()))
 		os.waitpid(pid, 0) # Parent waits to finish child process.
 
-	else:
-		print("\n*************************************************\n")
-		print("Child process pid is = {}\n".format(os.getpid()))
-		print("*************************************************\n")
-
 	#####################################################################################
-	
-	#####################################################################################
-	# Question2
-	# Download files with child process
-	#####################################################################################
-
-		
-		print("{} files downloading...\n".format(len(urls)))
-		start_downloading_time = time.time()
-		for i in range(len(urls)):
-			download_file(urls[i], "file{}".format(i))
-			print("file{0} downloaded from\n{1}\n".format(i, urls[i]))
-
-		end_downloading_time = time.time()
-
-		subtract_downloading_time = end_downloading_time - start_downloading_time
-
-		print("Total execution time to download = {}\n".format(subtract_downloading_time))
-
-		print("*************************************************\n")
-
-
-	#####################################################################################
-
-	#############################################################
 	# Question4
 	# Controlling duplicate files with multi processing
 	#####################################################################################
@@ -119,6 +89,38 @@ def control_process(urls):
 		print("\n*************************************************")
 
 #########################################################################################
+
+	else:
+		print("\n*************************************************\n")
+		print("Child process pid is = {}\n".format(os.getpid()))
+		print("*************************************************\n")
+
+	#####################################################################################
+	
+	#####################################################################################
+	# Question2
+	# Download files with child process
+	#####################################################################################
+
+		
+		print("{} files downloading...\n".format(len(urls)))
+		start_downloading_time = time.time()
+		for i in range(len(urls)):
+			download_file(urls[i], "file{}".format(i))
+			print("file{0} downloaded from\n{1}\n".format(i, urls[i]))
+
+		end_downloading_time = time.time()
+
+		subtract_downloading_time = end_downloading_time - start_downloading_time
+
+		print("Total execution time to download = {}\n".format(subtract_downloading_time))
+
+		print("*************************************************\n")
+
+
+	#####################################################################################
+
+	
 
 # Return new list with unique members
 def unique(list1): 
